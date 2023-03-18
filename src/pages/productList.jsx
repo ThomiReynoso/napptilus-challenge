@@ -74,6 +74,7 @@ const ProductList = () => {
       .toLowerCase()
       .includes(search.toLowerCase())
   );
+
   return (
     <div>
       <Header itemCount={0} />
