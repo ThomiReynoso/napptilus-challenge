@@ -1,3 +1,4 @@
+import { Button, Text } from '@chakra-ui/react';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -9,7 +10,7 @@ const Header = ({ itemCount }) => {
         <Link to="/">Productos</Link>
       </nav>
       <div>
-        Carrito: {itemCount}
+        <Text>Carrito: {itemCount}</Text>
       </div>
     </header>
   );

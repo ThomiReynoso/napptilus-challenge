@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import Header from '../components/header';
 import Item from '../components/item';
 import Search from '../components/search';
+import { ProductGrid } from '../components/ProductGrid';
+import { products } from '../components/_data';
+import { Box } from '@chakra-ui/react';
+import { ProductCard } from '../components/ProductCard';
 
 export const PRODUCTS = [
   {
@@ -69,8 +73,8 @@ export const PRODUCTS = [
 const ProductList = () => {
 	const [search, setSearch] = useState('');
 
-  const filteredProducts = PRODUCTS.filter((product) =>
-    `${product.brand} ${product.model}`
+  const filteredProducts = products.filter((product) =>
+    `${product.name}`
       .toLowerCase()
       .includes(search.toLowerCase())
   );
@@ -79,11 +83,26 @@ const ProductList = () => {
     <div>
       <Header itemCount={0} />
       <Search value={search} onChange={(e) => setSearch(e.target.value)} />
-      <div>
-        {filteredProducts.map((product) => (
-          <Item key={product.id} {...product} />
-        ))}
-      </div>
+			<Box
+				maxW="7xl"
+				mx="auto"
+				px={{
+					base: '4',
+					md: '8',
+					lg: '12',
+				}}
+				py={{
+					base: '6',
+					md: '8',
+					lg: '12',
+				}}
+			>
+				<ProductGrid>
+					{filteredProducts.map((product) => (
+						<ProductCard key={product.id} product={product} />
+					))}
+				</ProductGrid>
+			</Box>
     </div>
   );
 };
