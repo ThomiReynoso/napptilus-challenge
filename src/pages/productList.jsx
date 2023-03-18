@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/header';
 import Item from '../components/item';
 import Search from '../components/search';
@@ -67,12 +67,18 @@ export const PRODUCTS = [
 ];
 
 const ProductList = () => {
-	
+	const [search, setSearch] = useState('');
+
+  const filteredProducts = PRODUCTS.filter((product) =>
+    `${product.brand} ${product.model}`
+      .toLowerCase()
+      .includes(search.toLowerCase())
+  );
   return (
     <div>
       <Header itemCount={0} />
       <Search value={search} onChange={(e) => setSearch(e.target.value)} />
-      <div className={styles.itemsContainer}>
+      <div>
         {filteredProducts.map((product) => (
           <Item key={product.id} {...product} />
         ))}
