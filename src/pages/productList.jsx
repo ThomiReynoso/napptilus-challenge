@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import Header from '../components/header';
-import Item from '../components/item';
 import Search from '../components/search';
 import { ProductGrid } from '../components/ProductGrid';
 import { products } from '../components/_data';
 import { Box } from '@chakra-ui/react';
-import { ProductCard } from '../components/ProductCard';
+import { Item } from '../components/Item';
 
 export const PRODUCTS = [
   {
@@ -99,7 +98,7 @@ const ProductList = () => {
 			>
 				<ProductGrid>
 					{filteredProducts.map((product) => (
-						<ProductCard key={product.id} product={product} />
+						<Item key={product.id} product={product} />
 					))}
 				</ProductGrid>
 			</Box>
