@@ -10,8 +10,6 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react'
-import { Rating } from './Rating'
-import { FavouriteButton } from './FavouriteButton'
 import { PriceTag } from './PriceTag'
 import { Link as ReactRouterLink } from 'react-router-dom';
 
@@ -40,12 +38,6 @@ export const Item = (props) => {
             }}
           />
         </AspectRatio>
-        <FavouriteButton
-          position="absolute"
-          top="4"
-          right="4"
-          aria-label={`Add ${name} to your favourites`}
-        />
       </Box>
       <Stack>
         <Stack spacing="1">
