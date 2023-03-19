@@ -1,24 +1,12 @@
-import { ReactNode } from 'react';
 import {
   Box,
   Flex,
-  Avatar,
   HStack,
   Link,
   IconButton,
-  Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
   useDisclosure,
   useColorModeValue,
-  Stack,
 	Icon,
-	Breadcrumb,
-	BreadcrumbItem,
-	BreadcrumbLink,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import {CgShoppingCart} from 'react-icons/cg'
