@@ -33,7 +33,6 @@ export async function addProductToCart(id, colorCode, storageCode) {
             colorCode, 
             storageCode
         };
-        debugger
         const response = await fetch(`${BASE_URL}cart`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

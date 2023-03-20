@@ -2,14 +2,18 @@ import { Button, HStack, Select, Stack, Text, useColorModeValue, VStack } from '
 import { useState } from 'react';
 import { FaShoppingCart } from 'react-icons/fa'
 import { addProductToCart } from '../services/product.service';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../store/cartSlice';
 
 const Actions = ({product}) => {
 	const [ color, setColor ] = useState(product.options.colors[0].code);
 	const [ storage, setStorage ] = useState(product.options.storages[0].code);
+	const dispatch = useDispatch();
 
 	const addToCart = async () => {
 		const count = await addProductToCart(product.id, color, storage);
 		console.log(count)
+		dispatch(addItem(count));
 	}
 
 	return (
@@ -19,7 +23,7 @@ const Actions = ({product}) => {
 					<Text fontWeight={"bold"}>Color</Text>
 					<Select borderColor={"black"} onChange={(e)=> setColor(+e.target.value)}>
 						{product.options.colors.map(color => (
-								<option value={color.code} key={color.code}>{color.name}</option>
+							<option value={color.code} key={color.code}>{color.name}</option>
 						))}
 					</Select>
 				</VStack>
@@ -27,7 +31,7 @@ const Actions = ({product}) => {
 					<Text fontWeight={"bold"}>Storage</Text>
 					<Select borderColor={"black"} onChange={(e)=> setStorage(+e.target.value)}>
 						{product.options.storages.map(storage => (
-								<option value={storage.code} key={storage.code}>{storage.name}</option>
+							<option value={storage.code} key={storage.code}>{storage.name}</option>
 						))}
 					</Select>
 				</VStack>

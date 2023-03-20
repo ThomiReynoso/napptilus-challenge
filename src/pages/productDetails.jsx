@@ -9,7 +9,6 @@ import { FaShoppingCart } from 'react-icons/fa'
 import Actions from '../components/Actions';
 import { fetchProduct } from '../services/product.service';
 
-
 const ProductDetails = () => {
   const { id } = useParams();
   const [ product, setProduct] = useState();
@@ -25,7 +24,6 @@ const ProductDetails = () => {
       { isLoading
         ?  <Skeleton isLoaded={!isLoading}/>
         : <Box bgColor={"gray.100"}>
-            <Header itemCount={0} />
             <Center>
               <Grid templateColumns={responsiveGrid}>
                 <Image src={product.imgUrl} alt={`${product.brand} ${product.model}`} />
