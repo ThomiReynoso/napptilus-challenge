@@ -1,65 +1,96 @@
-import {
-  AspectRatio,
-  Box,
-  Image,
-  Link,
-  Skeleton,
-  Stack,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react'
 import { PriceTag } from './PriceTag'
 import { Link as ReactRouterLink } from 'react-router-dom';
 
+import {
+  Box,
+  Center,
+  useColorModeValue,
+  Heading,
+  Text,
+  Stack,
+  Image,
+  Button,
+  chakra,
+} from '@chakra-ui/react';
+
+const IMAGE =
+  'https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80';
+
+
+
 export const Item = (props) => {
-  const { product, rootProps } = props
+  const { product } = props
   const { brand, id, model, imgUrl, price } = product
   return (
-    <>
-    <Stack
-      spacing={{
-        base: '4',
-        md: '5',
-      }}
-      {...rootProps}
-    >
-      <Box position="relative">
-        <AspectRatio ratio={4 / 3}>
+    <Center py={12}>
+      <Box
+        role={'group'}
+        p={6}
+        maxW={'330px'}
+        w={'full'}
+        bg={useColorModeValue('white', 'gray.800')}
+        boxShadow={'2xl'}
+        rounded={'lg'}
+        pos={'relative'}
+        zIndex={1}>
+        <Box
+          rounded={'lg'}
+          mt={-12}
+          pos={'relative'}
+          height={'230px'}
+          _after={{
+            transition: 'all .3s ease',
+            content: '""',
+            w: 'full',
+            h: 'full',
+            pos: 'absolute',
+            top: 5,
+            left: 0,
+            backgroundImage: `url(${imgUrl})`,
+            filter: 'blur(15px)',
+            zIndex: -1,
+          }}
+          _groupHover={{
+            _after: {
+              filter: 'blur(20px)',
+            },
+          }}>
           <Image
+            rounded={'lg'}
+            height={230}
+            width={282}
+            objectFit={'cover'}
             src={imgUrl}
-            alt={brand}
-            draggable="false"
-            fallback={<Skeleton />}
-            borderRadius={{
-              base: 'md',
-              md: 'xl',
-            }}
           />
-        </AspectRatio>
-      </Box>
-      <Stack>
-        <Stack spacing="1">
-          <Text fontWeight="medium" color={useColorModeValue('gray.700', 'gray.400')}>
+        </Box>
+        <Stack pt={10} align={'center'}>
+          <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
             {brand}
           </Text>
-         <Text fontWeight="medium" color={useColorModeValue('gray.700', 'gray.400')}>
+          <Heading fontSize={'xl'} fontFamily={'body'} fontWeight={500}>
             {model}
-          </Text>
-          <PriceTag price={price} currency="USD" />
+          </Heading>
+          <Stack direction={'row'} align={'center'}>
+            <Text fontWeight={800} fontSize={'xl'}>
+              ${price} USD
+            </Text>
+          </Stack>
         </Stack>
-      </Stack>
-      <Stack align="center">
-        <Link
-          textDecoration="underline"
-          fontWeight="medium"
-          color={useColorModeValue('gray.600', 'gray.400')}
-          as={ReactRouterLink}
-          to={`/product/${id}`}
-        >
+      <Button
+        w={'full'}
+        mt={8}
+        bg={useColorModeValue('#151f21', 'gray.900')}
+        color={'white'}
+        rounded={'md'}
+        _hover={{
+          transform: 'translateY(-2px)',
+          boxShadow: 'lg',
+        }}>
+        <chakra.a href={`/product/${id}`}>
           Ver más detalle
-        </Link>
-      </Stack>
-    </Stack>
-    </>
+        </chakra.a>
+      </Button>
+      </Box>
+    </Center>
   )
 }
