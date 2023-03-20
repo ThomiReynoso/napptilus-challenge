@@ -6,6 +6,7 @@ import Description from '../components/description';
 import { products2Details } from '../components/_data';
 import { Button, Center, Grid, HStack, Select, Text, useBreakpointValue, VStack } from '@chakra-ui/react';
 import { FaShoppingCart } from 'react-icons/fa'
+import Actions from '../components/Actions';
 
 
 const ProductDetails = () => {
@@ -30,27 +31,7 @@ const ProductDetails = () => {
           <Image src={product.imgUrl} alt={`${product.brand} ${product.model}`} />
           <VStack>
             <Description product={product} />
-            <HStack>
-              <VStack>
-                <Text>Color</Text>
-                <Select>
-                  {product.options.colors.map(color => (
-                    <option value={color.code} key={color.code}>{color.name}</option>
-                    ))}
-                </Select>
-              </VStack>
-              <VStack>
-                <Text>Almacenamiento</Text>
-                <Select>
-                  {product.options.storages.map(storage => (
-                      <option value={storage.code} key={storage.code}>{storage.name}</option>
-                  ))}
-                </Select>
-              </VStack>
-            </HStack>
-            <Button leftIcon={<FaShoppingCart />}>
-              Añadir al carrito
-            </Button>
+            <Actions product={product} />
           </VStack>
         </Grid>
       </Center>
