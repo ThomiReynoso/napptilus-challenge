@@ -5,18 +5,18 @@ import { MdLocalShipping } from 'react-icons/md';
 const Actions = ({product}) => {  
 	return (
 		<>
-			<HStack>
+			<HStack width={"100%"} justifyContent={"space-around"}>
 				<VStack>
 					<Text fontWeight={"bold"}>Color</Text>
-					<Select>
+					<Select borderColor={"black"}>
 						{product.options.colors.map(color => (
 								<option value={color.code} key={color.code}>{color.name}</option>
 						))}
 					</Select>
 				</VStack>
 				<VStack>
-					<Text fontWeight={"bold"}>Almacenamiento</Text>
-					<Select>
+					<Text fontWeight={"bold"}>Storage</Text>
+					<Select borderColor={"black"}>
 						{product.options.storages.map(storage => (
 								<option value={storage.code} key={storage.code}>{storage.name}</option>
 						))}
@@ -25,9 +25,8 @@ const Actions = ({product}) => {
 			</HStack>
 			<Button
             rounded={'none'}
-            width={'full'}
-            marginTop={8}
-						marginRight={16}
+            width={'98%'}
+            marginTop={16}
             size={'lg'}
             py={'7'}
 						leftIcon={<FaShoppingCart />}

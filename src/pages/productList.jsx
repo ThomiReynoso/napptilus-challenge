@@ -79,7 +79,7 @@ const ProductList = () => {
   );
 
   return (
-    <div>
+    <Box bgColor={"gray.100"}>
       <Header itemCount={0} />
       <Search value={search} onChange={(e) => setSearch(e.target.value)} />
 			<Box
@@ -102,7 +102,7 @@ const ProductList = () => {
 					))}
 				</ProductGrid>
 			</Box>
-    </div>
+    </Box>
   );
 };
 

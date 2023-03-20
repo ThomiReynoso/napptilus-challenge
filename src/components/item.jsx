@@ -1,6 +1,3 @@
-import { PriceTag } from './PriceTag'
-import { Link as ReactRouterLink } from 'react-router-dom';
-
 import {
   Box,
   Center,
@@ -55,7 +52,7 @@ export const Item = (props) => {
             rounded={'lg'}
             height={230}
             width={282}
-            objectFit={'cover'}
+            objectFit={'contain'}
             src={imgUrl}
           />
         </Box>
@@ -83,7 +80,7 @@ export const Item = (props) => {
           boxShadow: 'lg',
         }}>
         <chakra.a href={`/product/${id}`}>
-          Check more details
+          Details
         </chakra.a>
       </Button>
       </Box>

@@ -4,7 +4,7 @@ import Header from '../components/header';
 import Image from '../components/image';
 import Description from '../components/description';
 import { products2Details } from '../components/_data';
-import { Button, Center, Grid, HStack, Select, Text, useBreakpointValue, VStack } from '@chakra-ui/react';
+import { Box, Button, Center, Grid, HStack, Select, Text, useBreakpointValue, VStack } from '@chakra-ui/react';
 import { FaShoppingCart } from 'react-icons/fa'
 import Actions from '../components/Actions';
 
@@ -16,15 +16,15 @@ const ProductDetails = () => {
 
   if (!product) {
     return (
-      <div>
+      <Box  bgColor={"gray.100"}>
         <Header itemCount={0} />
         <p>Producto no encontrado</p>
-      </div>
+      </Box>
     );
   }
 
   return (
-    <div>
+    <Box bgColor={"gray.100"}>
       <Header itemCount={0} />
       <Center>
         <Grid templateColumns={responsiveGrid}>
@@ -35,7 +35,7 @@ const ProductDetails = () => {
           </VStack>
         </Grid>
       </Center>
-    </div>
+    </Box>
   );
 };
 

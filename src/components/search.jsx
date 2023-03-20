@@ -8,9 +8,9 @@ const Search = ({ value, onChange }) => {
       <InputGroup marginTop={"0.5rem"} marginRight={"1rem"} width={"25rem"}>
         <InputLeftElement
           pointerEvents='none'
-          children={<SearchIcon color='gray.300' />}
+          children={<SearchIcon color='black' />}
         />
-        <Input placeholder='Search by model or brand' value={value} onChange={onChange}/>
+        <Input placeholder='Search by model or brand' borderColor={"black"} value={value} onChange={onChange}/>
       </InputGroup>
     </Flex>
   );

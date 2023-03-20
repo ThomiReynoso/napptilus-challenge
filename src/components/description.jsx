@@ -63,7 +63,7 @@ const Description = ({ product }) => {
             direction={'column'}
             divider={
               <StackDivider
-                borderColor={useColorModeValue('gray.200', 'gray.600')}
+                borderColor={useColorModeValue('gray.300', 'gray.600')}
               />
             }>
             <Box>
@@ -146,7 +146,7 @@ const Description = ({ product }) => {
                     </ListItem>
                     <ListItem>
                       <Text as={'span'} fontWeight={'bold'}>
-                        dimentions:
+                        Dimentions:
                       </Text>{' '}
                       {dimentions}
                     </ListItem>
