@@ -1,12 +1,13 @@
-import { Button, HStack, Select, Text, VStack } from '@chakra-ui/react';
+import { Button, HStack, Select, Stack, Text, useColorModeValue, VStack } from '@chakra-ui/react';
 import { FaShoppingCart } from 'react-icons/fa'
+import { MdLocalShipping } from 'react-icons/md';
 
 const Actions = ({product}) => {  
 	return (
 		<>
 			<HStack>
 				<VStack>
-					<Text>Color</Text>
+					<Text fontWeight={"bold"}>Color</Text>
 					<Select>
 						{product.options.colors.map(color => (
 								<option value={color.code} key={color.code}>{color.name}</option>
@@ -14,7 +15,7 @@ const Actions = ({product}) => {
 					</Select>
 				</VStack>
 				<VStack>
-					<Text>Almacenamiento</Text>
+					<Text fontWeight={"bold"}>Almacenamiento</Text>
 					<Select>
 						{product.options.storages.map(storage => (
 								<option value={storage.code} key={storage.code}>{storage.name}</option>
@@ -22,9 +23,23 @@ const Actions = ({product}) => {
 					</Select>
 				</VStack>
 			</HStack>
-			<Button leftIcon={<FaShoppingCart />}>
-				Añadir al carrito
-			</Button>
+			<Button
+            rounded={'none'}
+            width={'full'}
+            marginTop={8}
+						marginRight={16}
+            size={'lg'}
+            py={'7'}
+						leftIcon={<FaShoppingCart />}
+            bg={useColorModeValue('gray.900', 'gray.50')}
+            color={useColorModeValue('white', 'gray.900')}
+            textTransform={'uppercase'}
+            _hover={{
+              transform: 'translateY(2px)',
+              boxShadow: 'lg',
+            }}>
+            Add to cart
+          </Button>
 		</>
     )
 }

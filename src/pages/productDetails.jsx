@@ -12,7 +12,7 @@ import Actions from '../components/Actions';
 const ProductDetails = () => {
   const { id } = useParams();
   const product = products2Details.find((product) => product.id === id);
-  const responsiveGrid = useBreakpointValue({ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" })
+  const responsiveGrid = useBreakpointValue({ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" });
 
   if (!product) {
     return (
@@ -27,7 +27,7 @@ const ProductDetails = () => {
     <div>
       <Header itemCount={0} />
       <Center>
-        <Grid templateColumns={responsiveGrid} margin={4}>
+        <Grid templateColumns={responsiveGrid}>
           <Image src={product.imgUrl} alt={`${product.brand} ${product.model}`} />
           <VStack>
             <Description product={product} />
