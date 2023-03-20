@@ -1,18 +1,64 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import {
+  Box,
+  Flex,
+  HStack,
+  Link,
+  IconButton,
+  useDisclosure,
+  useColorModeValue,
+	Icon,
+  Text,
+} from '@chakra-ui/react';
+import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+import {CgShoppingCart} from 'react-icons/cg'
 
-const Header = ({ itemCount }) => {
+const Links = [ 'All Products'];
+
+const NavLink = ({ children }) => (
+  <Link
+    px={2}
+    py={1}
+    rounded={'md'}
+    color={"white"}
+    _hover={{
+      textDecoration: 'none',
+      bg: 'gray.700',
+    }}
+    href={'/'}>
+    {children}
+  </Link>
+);
+
+export default function Header({ itemCount }) {
+
+	const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <header>
-      <Link to="/">Mobile Shop</Link>
-      <nav>
-        <Link to="/">Productos</Link>
-      </nav>
-      <div>
-        Carrito: {itemCount}
-      </div>
-    </header>
+    <>
+      <Box bg={"black"} px={4}>
+        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+          <IconButton
+            size={'md'}
+            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+            aria-label={'Open Menu'}
+            display={{ md: 'none' }}
+            onClick={isOpen ? onClose : onOpen}
+          />
+          <HStack spacing={8} alignItems={'center'}>
+            <Link href='/' fontWeight={'bold'} color={"white"}>MOBILFY</Link>
+            {Links.map((link) => (
+                <NavLink key={link}>{link}</NavLink>
+              ))}
+            <Box fontWeight={'bold'} color={"white"}>Hacer breadcrumb</Box>	
+          </HStack>
+          <Flex alignItems={'center'}>
+            <Icon
+              as={CgShoppingCart}
+              color={"white"}
+            />
+            <Text color={"white"}>({itemCount})</Text>
+          </Flex>
+        </Flex>
+      </Box>
+    </>
   );
-};
-
-export default Header;
+}
