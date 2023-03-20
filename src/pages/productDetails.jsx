@@ -3,12 +3,12 @@ import { useParams } from 'react-router-dom';
 import Header from '../components/header';
 import Image from '../components/image';
 import Description from '../components/description';
-import { PRODUCTS } from './productList';
+import { products2Details } from '../components/_data';
 
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const product = PRODUCTS.find((product) => product.id === id);
+  const product = products2Details.find((product) => product.id === id);
 
   if (!product) {
     return (
@@ -23,7 +23,7 @@ const ProductDetails = () => {
     <div>
       <Header itemCount={0} />
       <div>
-        <Image src={product.image} alt={`${product.brand} ${product.model}`} />
+        <Image src={product.imgUrl} alt={`${product.brand} ${product.model}`} />
         <Description product={product} />
       </div>
     </div>

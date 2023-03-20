@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from '../components/header';
 import Search from '../components/search';
 import { ProductGrid } from '../components/ProductGrid';
-import { products } from '../components/_data';
+import { products, products2 } from '../components/_data';
 import { Box } from '@chakra-ui/react';
 import { Item } from '../components/Item';
 
@@ -72,8 +72,8 @@ export const PRODUCTS = [
 const ProductList = () => {
 	const [search, setSearch] = useState('');
 
-  const filteredProducts = products.filter((product) =>
-    `${product.name}`
+  const filteredProducts = products2.filter((product) =>
+    `${product.brand} ${product.model}`
       .toLowerCase()
       .includes(search.toLowerCase())
   );

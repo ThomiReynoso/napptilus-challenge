@@ -1,8 +1,6 @@
 import {
   AspectRatio,
   Box,
-  Button,
-  HStack,
   Image,
   Link,
   Skeleton,
@@ -15,7 +13,7 @@ import { Link as ReactRouterLink } from 'react-router-dom';
 
 export const Item = (props) => {
   const { product, rootProps } = props
-  const { name, id, flag, imageUrl, price, salePrice } = product
+  const { brand, id, model, imgUrl, price } = product
   return (
     <>
     <Stack
@@ -28,8 +26,8 @@ export const Item = (props) => {
       <Box position="relative">
         <AspectRatio ratio={4 / 3}>
           <Image
-            src={imageUrl}
-            alt={name}
+            src={imgUrl}
+            alt={brand}
             draggable="false"
             fallback={<Skeleton />}
             borderRadius={{
@@ -42,12 +40,12 @@ export const Item = (props) => {
       <Stack>
         <Stack spacing="1">
           <Text fontWeight="medium" color={useColorModeValue('gray.700', 'gray.400')}>
-            {name}
+            {brand}
           </Text>
          <Text fontWeight="medium" color={useColorModeValue('gray.700', 'gray.400')}>
-            {flag}
+            {model}
           </Text>
-          <PriceTag price={price} salePrice={salePrice} currency="USD" />
+          <PriceTag price={price} currency="USD" />
         </Stack>
       </Stack>
       <Stack align="center">
