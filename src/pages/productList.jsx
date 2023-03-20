@@ -2,18 +2,25 @@ import React, { useEffect, useState } from 'react';
 import Header from '../components/header';
 import Search from '../components/search';
 import { ProductGrid } from '../components/ProductGrid';
-import { products, products2 } from '../components/_data';
 import { Box, Center, Skeleton, SkeletonCircle, Spinner } from '@chakra-ui/react';
 import { Item } from '../components/item';
 import { fetchAllProducts } from '../services/product.service';
+import { getFromLocalstorage } from '../utils/cache';
 
 const ProductList = () => {
 	const [search, setSearch] = useState('');
   const [products, setProducts] = useState([]);
-  const [isLoading, setisLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetchAllProducts(setProducts, setisLoading);
+    const cachedProducts = getFromLocalstorage('products');
+
+    if (!cachedProducts) {
+      fetchAllProducts(setProducts, setIsLoading);
+    } else {
+      setProducts(cachedProducts);
+      setIsLoading(false);
+    }
   }, [])
 
   const filteredProducts = products.filter((product) =>
