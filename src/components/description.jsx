@@ -54,7 +54,7 @@ const Description = ({ product }) => {
               color={useColorModeValue('gray.900', 'gray.400')}
               fontWeight={300}
               fontSize={'2xl'}>
-              ${price} USD
+              {price ? `$${price} USD` : 'No Price'}
             </Text>
           </Box>
 

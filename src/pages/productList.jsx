@@ -1,108 +1,54 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../components/header';
 import Search from '../components/search';
 import { ProductGrid } from '../components/ProductGrid';
 import { products, products2 } from '../components/_data';
-import { Box } from '@chakra-ui/react';
-import { Item } from '../components/Item';
-
-export const PRODUCTS = [
-  {
-    id: '1',
-    image: 'https://example.com/images/phone1.jpg',
-    brand: 'Samsung',
-    model: 'Galaxy S21',
-    price: 799,
-    cpu: 'Exynos 2100',
-    ram: '8GB',
-    os: 'Android 11',
-    screenResolution: '2400 x 1080',
-    battery: 4000,
-    cameras: 'Triple: 12MP + 64MP + 12MP',
-    dimensions: '151.7 x 71.2 x 7.9',
-    weight: 171,
-  },
-  {
-    id: '2',
-    image: 'https://example.com/images/phone2.jpg',
-    brand: 'Apple',
-    model: 'iPhone 13',
-    price: 999,
-    cpu: 'A15 Bionic',
-    ram: '6GB',
-    os: 'iOS 15',
-    screenResolution: '2532 x 1170',
-    battery: 3240,
-    cameras: 'Dual: 12MP + 12MP',
-    dimensions: '146.7 x 71.5 x 7.4',
-    weight: 174,
-  },
-  {
-    id: '3',
-    image: 'https://example.com/images/phone3.jpg',
-    brand: 'Google',
-    model: 'Pixel 6',
-    price: 899,
-    cpu: 'Google Tensor',
-    ram: '8GB',
-    os: 'Android 12',
-    screenResolution: '2400 x 1080',
-    battery: 4600,
-    cameras: 'Dual: 50MP + 12MP',
-    dimensions: '158.6 x 74.8 x 8.9',
-    weight: 207,
-  },
-  {
-    id: '4',
-    image: 'https://example.com/images/phone4.jpg',
-    brand: 'OnePlus',
-    model: '9 Pro',
-    price: 969,
-    cpu: 'Snapdragon 888',
-    ram: '8GB',
-    os: 'Android 11',
-    screenResolution: '3216 x 1440',
-    battery: 4500,
-    cameras: 'Quad: 48MP + 50MP + 8MP + 2MP',
-    dimensions: '163.2 x 73.6 x 8.7',
-    weight: 197,
-  },
-];
+import { Box, Center, Skeleton, SkeletonCircle, Spinner } from '@chakra-ui/react';
+import { Item } from '../components/item';
+import { fetchAllProducts } from '../services/product.service';
 
 const ProductList = () => {
 	const [search, setSearch] = useState('');
+  const [products, setProducts] = useState([]);
+  const [isLoading, setisLoading] = useState(true);
 
-  const filteredProducts = products2.filter((product) =>
+  useEffect(() => {
+    fetchAllProducts(setProducts, setisLoading);
+  }, [])
+
+  const filteredProducts = products.filter((product) =>
     `${product.brand} ${product.model}`
       .toLowerCase()
       .includes(search.toLowerCase())
   );
 
   return (
-    <Box bgColor={"gray.100"}>
-      <Header itemCount={0} />
-      <Search value={search} onChange={(e) => setSearch(e.target.value)} />
-			<Box
-				maxW="7xl"
-				mx="auto"
-				px={{
-					base: '4',
-					md: '8',
-					lg: '12',
-				}}
-				py={{
-					base: '6',
-					md: '8',
-					lg: '12',
-				}}
-			>
-				<ProductGrid>
-					{filteredProducts.map((product) => (
-						<Item key={product.id} product={product} />
-					))}
-				</ProductGrid>
-			</Box>
-    </Box>
+    <Skeleton startColor='gray.700' endColor='gray.100' isLoaded={!isLoading} height={'100vh'} fadeDuration={0.1}>
+      <Box bgColor={"gray.100"}>
+        <Header itemCount={0} />
+        <Search value={search} onChange={(e) => setSearch(e.target.value)} />
+        <Box
+          maxW="7xl"
+          mx="auto"
+          px={{
+            base: '4',
+            md: '8',
+            lg: '12',
+          }}
+          py={{
+            base: '6',
+            md: '8',
+            lg: '12',
+          }}
+        >
+            <ProductGrid>
+              {filteredProducts.map((product) => (
+                <Item key={product.id} product={product} />
+                ))}
+            </ProductGrid>
+        </Box>
+      </Box>
+    </Skeleton>
   );
 };
 

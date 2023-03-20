@@ -65,7 +65,7 @@ export const Item = (props) => {
           </Heading>
           <Stack direction={'row'} align={'center'}>
             <Text fontWeight={800} fontSize={'xl'}>
-              ${price} USD
+              {price ? `$${price} USD` : 'No Price'}
             </Text>
           </Stack>
         </Stack>
