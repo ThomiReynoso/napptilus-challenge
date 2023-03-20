@@ -31,7 +31,7 @@ const ProductDetails = () => {
     <>
       { isLoading
         ?  <Skeleton isLoaded={!isLoading}/>
-        : <Box bgColor={"gray.100"}>
+        : <Box bgColor={"gray.100"} height={"100vh"}>
             <Center>
               <Grid templateColumns={responsiveGrid}>
                 <Image src={product.imgUrl} alt={`${product.brand} ${product.model}`} />
