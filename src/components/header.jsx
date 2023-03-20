@@ -12,7 +12,7 @@ import {
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import {CgShoppingCart} from 'react-icons/cg'
 
-const Links = [ 'Products'];
+const Links = [ 'All Products'];
 
 const NavLink = ({ children }) => (
   <Link
@@ -22,7 +22,7 @@ const NavLink = ({ children }) => (
     color={"white"}
     _hover={{
       textDecoration: 'none',
-      bg: useColorModeValue('gray.200', 'gray.700'),
+      bg: 'gray.700',
     }}
     href={'/'}>
     {children}
@@ -45,6 +45,9 @@ export default function Header({ itemCount }) {
           />
           <HStack spacing={8} alignItems={'center'}>
             <Link href='/' fontWeight={'bold'} color={"white"}>MOBILFY</Link>
+            {Links.map((link) => (
+                <NavLink key={link}>{link}</NavLink>
+              ))}
             <Box fontWeight={'bold'} color={"white"}>Hacer breadcrumb</Box>	
           </HStack>
           <Flex alignItems={'center'}>
