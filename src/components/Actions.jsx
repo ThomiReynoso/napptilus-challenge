@@ -4,6 +4,7 @@ import { FaShoppingCart } from 'react-icons/fa'
 import { addProductToCart } from '../services/product.service';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../store/cartSlice';
+import React from 'react';
 
 const Actions = ({product}) => {
 	const [ color, setColor ] = useState(product.options.colors[0].code);
