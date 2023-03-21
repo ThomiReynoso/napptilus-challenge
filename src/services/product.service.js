@@ -1,31 +1,21 @@
-import { setToLocalstorage } from '../utils/cache';
-import { PRODUCTS_LOCAL_STORAGE, PRODUCT_LOCAL_STORAGE } from '../utils/constants';
-
 const BASE_URL = 'https://itx-frontend-test.onrender.com/api/';
 
-export async function fetchAllProducts(setProducts, setIsLoading) {
+export async function fetchAllProducts() {
   try {
     const response = await fetch(`${BASE_URL}product`);
     if (response.ok) {
-      const products = await response.json();
-      setProducts(products);
-      setIsLoading(false);
-      // Store all products in local storage for 1 hour (its like a cache)
-      setToLocalstorage(PRODUCTS_LOCAL_STORAGE, products, 3600000);
+      return await response.json();
     }
   } catch (error) {
     console.error('Error on fetching data', error);
   }
 }
 
-export async function fetchProduct(idProduct, setProduct, setIsLoading) {
+export async function fetchProduct(idProduct) {
   try {
     const response = await fetch(`${BASE_URL}product/${idProduct}`);
     if (response.ok) {
-      const product = await response.json();
-      setProduct(product);
-      setToLocalstorage(PRODUCT_LOCAL_STORAGE(idProduct), product, 3600000);
-      setIsLoading(false);
+      return await response.json();
     }
   } catch (error) {
     console.error('Error on fetching data', error);

@@ -5,7 +5,7 @@ import { ProductGrid } from '../components/ProductGrid';
 import { Box, Skeleton } from '@chakra-ui/react';
 import { Item } from '../components/item';
 import { fetchAllProducts } from '../services/product.service';
-import { getFromLocalstorage } from '../utils/cache';
+import { getFromLocalstorage, setToLocalstorage } from '../utils/cache';
 import { PRODUCTS_LOCAL_STORAGE } from '../utils/constants';
 
 const ProductList = () => {
@@ -13,11 +13,19 @@ const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  async function fetchProducts() {
+    const prods = await fetchAllProducts();
+    setProducts(prods);
+    setIsLoading(false);
+    // Store all products in local storage for 1 hour (its like a cache)
+    setToLocalstorage(PRODUCTS_LOCAL_STORAGE, prods, 3600000);
+  }
+
   useEffect(() => {
     const cachedProducts = getFromLocalstorage(PRODUCTS_LOCAL_STORAGE);
 
     if (!cachedProducts) {
-      fetchAllProducts(setProducts, setIsLoading);
+      fetchProducts();
     } else {
       setProducts(cachedProducts);
       setIsLoading(false);
