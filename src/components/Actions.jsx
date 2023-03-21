@@ -37,20 +37,21 @@ const Actions = ({product}) => {
 				</VStack>
 			</HStack>
 			<Button
-            rounded={'none'}
-            width={'98%'}
-            marginTop={16}
-            size={'lg'}
-            py={'7'}
-			onClick={addToCart}
-			leftIcon={<FaShoppingCart />}
-            bg={useColorModeValue('gray.900', 'gray.50')}
-            color={useColorModeValue('white', 'gray.900')}
-            textTransform={'uppercase'}
-            _hover={{
-              transform: 'translateY(2px)',
-              boxShadow: 'lg',
-            }}>
+				rounded={'none'}
+				width={'98%'}
+				marginTop={16}
+				size={'lg'}
+				py={'7'}
+				onClick={addToCart}
+				leftIcon={<FaShoppingCart />}
+				bg={useColorModeValue('gray.900', 'gray.50')}
+				color={useColorModeValue('white', 'gray.900')}
+				textTransform={'uppercase'}
+				_hover={{
+					backgroundColor: 'gray.600',
+					transform: 'translateY(2px)',
+					boxShadow: 'lg',
+				}}>
             Add to cart
           </Button>
 		</>
