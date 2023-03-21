@@ -1,5 +1,4 @@
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react";
-import { Link, useParams } from "react-router-dom";
 
 export const BreadcrumbComponent = ({id = null, model = null, brand = null }) => {
     return (

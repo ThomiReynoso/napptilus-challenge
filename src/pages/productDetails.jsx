@@ -3,8 +3,7 @@ import { useParams } from 'react-router-dom';
 import Header from '../components/header';
 import Image from '../components/image';
 import Description from '../components/description';
-import { Box, Button, Center, Grid, HStack, Select, Skeleton, Text, useBreakpointValue, VStack } from '@chakra-ui/react';
-import { FaShoppingCart } from 'react-icons/fa'
+import { Box, Center, Grid, Skeleton, useBreakpointValue, VStack } from '@chakra-ui/react';
 import Actions from '../components/Actions';
 import { fetchProduct } from '../services/product.service';
 import { getFromLocalstorage } from '../utils/cache';

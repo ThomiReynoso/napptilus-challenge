@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '../components/header';
 import Search from '../components/search';
 import { ProductGrid } from '../components/ProductGrid';
-import { Box, Center, Skeleton, SkeletonCircle, Spinner } from '@chakra-ui/react';
+import { Box, Skeleton } from '@chakra-ui/react';
 import { Item } from '../components/item';
 import { fetchAllProducts } from '../services/product.service';
 import { getFromLocalstorage } from '../utils/cache';

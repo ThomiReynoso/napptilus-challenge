@@ -5,7 +5,6 @@ import {
   Link,
   IconButton,
   useDisclosure,
-  useColorModeValue,
 	Icon,
   Text,
 } from '@chakra-ui/react';
