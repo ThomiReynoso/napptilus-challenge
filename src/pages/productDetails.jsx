@@ -3,11 +3,10 @@ import { useParams } from 'react-router-dom';
 import Header from '../components/header';
 import Image from '../components/image';
 import Description from '../components/description';
-import { Box, Button, Center, Grid, HStack, Select, Skeleton, Text, useBreakpointValue, VStack } from '@chakra-ui/react';
-import { FaShoppingCart } from 'react-icons/fa'
+import { Box, Center, Grid, Skeleton, useBreakpointValue, VStack } from '@chakra-ui/react';
 import Actions from '../components/Actions';
 import { fetchProduct } from '../services/product.service';
-import { getFromLocalstorage } from '../utils/cache';
+import { getFromLocalstorage, setToLocalstorage } from '../utils/cache';
 import { PRODUCT_LOCAL_STORAGE } from '../utils/constants';
 
 const ProductDetails = () => {
@@ -16,12 +15,20 @@ const ProductDetails = () => {
   const [ isLoading, setIsLoading ] = useState(true);
   const responsiveGrid = useBreakpointValue({ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" });
 
+  async function fetchData() {
+    const prod = await fetchProduct(id);
+    setProduct(prod);
+    setIsLoading(false);
+    // Store an specific product in local storage for 1 hour (its like a cache)
+    setToLocalstorage(PRODUCT_LOCAL_STORAGE(id), prod, 3600000);
+  }
+
   useEffect(() => {
     const cachedProduct = getFromLocalstorage(PRODUCT_LOCAL_STORAGE(id));
 
     if (!cachedProduct) {
-      fetchProduct(id, setProduct, setIsLoading)
-    } else {
+        fetchData()
+      } else {
       setProduct(cachedProduct);
       setIsLoading(false);
     }

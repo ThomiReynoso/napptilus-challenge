@@ -9,6 +9,7 @@ import {
   Button,
   chakra,
 } from '@chakra-ui/react';
+import React from 'react';
 
 
 export const Item = (props) => {
