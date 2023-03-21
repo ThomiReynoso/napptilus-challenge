@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import {CgShoppingCart} from 'react-icons/cg'
+import { useSelector } from 'react-redux';
 
 const Links = [ 'All Products'];
 
@@ -29,7 +30,8 @@ const NavLink = ({ children }) => (
   </Link>
 );
 
-export default function Header({ itemCount }) {
+export default function Header({ }) {
+  const itemCount = useSelector((state) => state.cart.itemCount);
 
 	const { isOpen, onOpen, onClose } = useDisclosure();
   return (
