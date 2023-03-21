@@ -12,13 +12,13 @@ import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import {CgShoppingCart} from 'react-icons/cg'
 import { useSelector } from 'react-redux';
 import { BreadcrumbComponent } from './Breadcrumb';
+import React from 'react';
 
 export default function Header({ id = null, model = null, brand = null }) {
   const itemCount = useSelector((state) => state.cart.itemCount);
 	const { isOpen, onOpen, onClose } = useDisclosure();
   
   return (
-    <>
       <Box bg={"black"} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <IconButton
@@ -41,6 +41,5 @@ export default function Header({ id = null, model = null, brand = null }) {
           </Flex>
         </Flex>
       </Box>
-    </>
   );
 }
