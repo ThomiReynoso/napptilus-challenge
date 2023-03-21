@@ -42,7 +42,7 @@ const ProductList = () => {
   return (
     <>
     <Header />
-    <Skeleton startColor='gray.700' endColor='gray.100' isLoaded={!isLoading} height={'100vh'} fadeDuration={0.1}>
+    <Skeleton startColor='gray.700' endColor='gray.100' isLoaded={!isLoading} height={'100vh'} fadeDuration={2}>
       <Box bgColor={"gray.100"}>
         <Search value={search} onChange={(e) => setSearch(e.target.value)} />
         <Box
