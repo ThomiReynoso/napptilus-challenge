@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import Header from '../components/header';
 import Search from '../components/search';
 import { ProductGrid } from '../components/ProductGrid';
-import { Box, Skeleton } from '@chakra-ui/react';
+import { Box, Center, Skeleton } from '@chakra-ui/react';
 import { Item } from '../components/item';
 import { fetchAllProducts } from '../services/product.service';
 import { getFromLocalstorage, setToLocalstorage } from '../utils/cache';
 import { PRODUCTS_LOCAL_STORAGE } from '../utils/constants';
+import NoResults from '../components/NoResults';
 
 const ProductList = () => {
 	const [search, setSearch] = useState('');
@@ -63,6 +64,9 @@ const ProductList = () => {
                 <Item key={product.id} product={product} />
                 ))}
             </ProductGrid>
+            {filteredProducts.length === 0 && 
+              <NoResults/>
+            }
         </Box>
       </Box>
     </Skeleton>
