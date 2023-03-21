@@ -1,4 +1,4 @@
-import { Button, HStack, Select, Stack, Text, useColorModeValue, VStack } from '@chakra-ui/react';
+import { Button, HStack, Select, Stack, Text, useColorModeValue, useToast, VStack } from '@chakra-ui/react';
 import { useState } from 'react';
 import { FaShoppingCart } from 'react-icons/fa'
 import { addProductToCart } from '../services/product.service';
@@ -9,11 +9,19 @@ const Actions = ({product}) => {
 	const [ color, setColor ] = useState(product.options.colors[0].code);
 	const [ storage, setStorage ] = useState(product.options.storages[0].code);
 	const dispatch = useDispatch();
+	const toast = useToast();
 
 	const addToCart = async () => {
 		const count = await addProductToCart(product.id, color, storage);
 		console.log(count)
 		dispatch(addItem(count));
+		toast({
+			title: 'Item Added to cart!',
+			description: `${product.brand} ${product.model} successfully added!`,
+			status: 'success',
+			duration: 9000,
+			isClosable: true,
+		  });
 	}
 
 	return (
@@ -37,20 +45,21 @@ const Actions = ({product}) => {
 				</VStack>
 			</HStack>
 			<Button
-            rounded={'none'}
-            width={'98%'}
-            marginTop={16}
-            size={'lg'}
-            py={'7'}
-			onClick={addToCart}
-			leftIcon={<FaShoppingCart />}
-            bg={useColorModeValue('gray.900', 'gray.50')}
-            color={useColorModeValue('white', 'gray.900')}
-            textTransform={'uppercase'}
-            _hover={{
-              transform: 'translateY(2px)',
-              boxShadow: 'lg',
-            }}>
+				rounded={'none'}
+				width={'98%'}
+				marginTop={16}
+				size={'lg'}
+				py={'7'}
+				onClick={addToCart}
+				leftIcon={<FaShoppingCart />}
+				bg={useColorModeValue('gray.900', 'gray.50')}
+				color={useColorModeValue('white', 'gray.900')}
+				textTransform={'uppercase'}
+				_hover={{
+					backgroundColor: 'gray.600',
+					transform: 'translateY(2px)',
+					boxShadow: 'lg',
+				}}>
             Add to cart
           </Button>
 		</>

@@ -78,6 +78,7 @@ export const Item = (props) => {
         _hover={{
           transform: 'translateY(-2px)',
           boxShadow: 'lg',
+          backgroundColor: 'gray.600',
         }}>
         <chakra.a href={`/product/${id}`}>
           Details
