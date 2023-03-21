@@ -1,8 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { getFromLocalstorage } from '../utils/cache';
 
-const initialState = {
+let initialState = {
   itemCount: 0,
 };
+
+const persistedData = getFromLocalstorage("store");
+if (persistedData) {
+    initialState.itemCount = persistedData.cart.itemCount;
+}
 
 const cartSlice = createSlice({
   name: 'cart',
