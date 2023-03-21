@@ -83,7 +83,7 @@ const Description = ({ product }) => {
                   <ListItem>{networkTechnology}</ListItem>
                 </List>
                 <List spacing={2}>
-                  {sensors.map(sensor => <ListItem key={sensor}>{sensor}</ListItem> ) }
+                  {Array.isArray(sensors) ? sensors.map(sensor => <ListItem key={sensor}>{sensor}</ListItem> ) : <ListItem>{sensors}</ListItem> }
                   <ListItem>{radio}</ListItem>
                 </List>
               </SimpleGrid>
