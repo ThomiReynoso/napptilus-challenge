@@ -6,6 +6,7 @@ import { Box, Center, Skeleton, SkeletonCircle, Spinner } from '@chakra-ui/react
 import { Item } from '../components/item';
 import { fetchAllProducts } from '../services/product.service';
 import { getFromLocalstorage } from '../utils/cache';
+import { PRODUCTS_LOCAL_STORAGE } from '../utils/constants';
 
 const ProductList = () => {
 	const [search, setSearch] = useState('');
@@ -13,7 +14,7 @@ const ProductList = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const cachedProducts = getFromLocalstorage('products');
+    const cachedProducts = getFromLocalstorage(PRODUCTS_LOCAL_STORAGE);
 
     if (!cachedProducts) {
       fetchAllProducts(setProducts, setIsLoading);

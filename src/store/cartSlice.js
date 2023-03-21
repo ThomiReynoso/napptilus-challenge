@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getFromLocalstorage } from '../utils/cache';
+import { STORE_LOCAL_STORAGE } from '../utils/constants';
 
 let initialState = {
   itemCount: 0,
 };
 
-const persistedData = getFromLocalstorage("store");
+const persistedData = getFromLocalstorage(STORE_LOCAL_STORAGE);
 if (persistedData) {
     initialState.itemCount = persistedData.cart.itemCount;
 }
